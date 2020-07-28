@@ -1,0 +1,159 @@
+@import "../../assets/style/mixin";
+
+.home-top-lists {
+  width: 100%;
+  //头部信息
+  .top-lists-header {
+    padding: 20px 0 20px 20px;
+    height: 100px;
+    @include Flex($justify: start, $align: start);
+    background-color: #F4F4F4;
+
+    .lists-header-img {
+      width: 80px;
+      height: 80px;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        background-image: url("../../assets/images/cover-song.png");
+        @include BackgroundPosition(-145px -57px);
+      }
+    }
+
+    .lists-header-title {
+      padding: 6px 0 0 10px;
+
+      h3 {
+        font-size: 14px;
+        cursor: pointer;
+        color: #333333;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      div {
+        margin-top: 10px;
+
+        span {
+          width: 22px;
+          height: 22px;
+          display: inline-block;
+          margin-right: 10px;
+          background-image: url("../../assets/images/index-bg.png");
+
+          &:nth-of-type(1) {
+            @include BackgroundPosition(-267px -205px);
+
+            &:hover {
+              @include BackgroundPosition(-267px -235px);
+            }
+          }
+
+          &:nth-of-type(2) {
+            @include BackgroundPosition(-300px -205px);
+
+            &:hover {
+              @include BackgroundPosition(-300px -235px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .top-lists {
+    li {
+      height: 32px;
+      padding: 0 15px;
+      @include Flex($justify: start);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      background-color: #E8E8E8;
+      &:nth-of-type(2n){
+        background-color: #F4F4F4;
+      }
+      &:nth-child(-n+3){
+        span{
+          color: #c10d0c;
+        }
+      }
+
+      &:hover {
+        & > div {
+          top: 50%;
+        }
+      }
+
+      &.top-lists-more {
+        @include Flex($justify: flex-end);
+      }
+
+      span {
+        font-size: 16px;
+        margin-right: 10px;
+      }
+
+      p {
+        color: #000;
+      }
+
+      div {
+        @include Flex($justify: start);
+        margin-left: auto;
+        position: absolute;
+        right: 10px;
+        top: -300px;
+        transform: translateY(-50%);
+
+        span {
+          width: 17px;
+          height: 17px;
+          margin-right: 10px;
+          background-image: url("../../assets/images/index-bg.png");
+          @include BackgroundPosition(-267px -268px);
+
+          &:hover {
+            @include BackgroundPosition(-267px -288px);
+          }
+
+          &:nth-of-type(2) {
+            background-image: url("../../assets/images/icon-all2.png");
+            @include BackgroundPosition(0 -700px);
+
+            &:hover {
+              @include BackgroundPosition(-22px -700px);
+            }
+          }
+
+          &:nth-of-type(3) {
+            @include BackgroundPosition(-297px -268px);
+
+            &:hover {
+              @include BackgroundPosition(-297px -288px);
+            }
+          }
+        }
+      }
+    }
+
+    .top-lists-item {
+
+    }
+  }
+
+}

@@ -1,0 +1,83 @@
+@import "../../assets/style/mixin";
+
+.song-item {
+  //width: 100%;
+  //height: 100%;
+  width: 140px;
+  height: 204px;
+
+  .song-item-cover {
+    width: 140px;
+    height: 140px;
+    position: relative;
+
+    > img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    //播放栏
+    .play-column {
+      width: 100%;
+      height: 27px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-image: url("../../assets/images/cover-song.png");
+      @include BackgroundPosition(0 -537px);
+      color: #cccccc;
+      padding: 0 10px;
+      @include Flex;
+
+      .play-column-icon {
+        width: 14px;
+        height: 11px;
+        background-image: url("../../assets/images/icon-all.png");
+        @include BackgroundPosition(0 -24px);
+      }
+
+      .play-volume {
+        color: #cccccc;
+        margin: 0 auto 0 9px;
+      }
+
+      .play-btn {
+        width: 16px;
+        height: 17px;
+        background-image: url("../../assets/images/icon-all.png");
+        @include BackgroundPosition(0 0);
+        cursor: pointer;
+
+        &:hover {
+          @include BackgroundPosition(0 -60px);
+        }
+      }
+    }
+  }
+
+  //歌单标题
+  .song-item-name {
+    margin: 8px 0 3px;
+    width: 100%;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.4;
+    cursor: pointer;
+    @include Flex($justify: start, $align: start);
+
+    &:hover {
+      .item-name-title{
+        text-decoration:underline ;
+      }
+    }
+
+    //歌单类型
+    .item-name-type {
+      width: 50px;
+      height: 15px;
+      background-image: url("../../assets/images/icon-all2.png");
+      @include BackgroundPosition(-31px -658px);
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import "../../assets/style/mixin";
+@import "../../assets/style/variable";
+
+.home {
+  //顶部轮播图
+  .home-banner {
+    width: 100%;
+    background-color: #cccccc;
+    //轮播图盒子
+    .home-banner-wrap {
+      width: 982px;
+      height: 285px;
+      margin: 0 auto;
+      position: relative;
+
+      .carousel-btn-right {
+        right: -322px;
+      }
+
+      //下载客户端
+      .home-banner-download {
+        width: 254px;
+        height: 285px;
+        background-image: url("../../assets/images/home-download.png");
+        @include BackgroundPosition(0 0);
+        position: absolute;
+        top: 0;
+        right: -1px;
+
+        a {
+          display: block;
+          width: 215px;
+          height: 56px;
+          margin: 185px auto 19px;
+          text-indent: -9999px;
+          background-image: url("../../assets/images/home-download.png");
+          @include BackgroundPosition(0 9999px);
+          cursor: pointer;
+
+          &:hover {
+            @include BackgroundPosition(0 -290px);
+          }
+        }
+
+        p {
+          margin: 10px auto;
+          text-align: center;
+          color: #8d8d8d;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  //content
+  .home-content {
+    width: $wrapWidth;
+    margin: 0 auto;
+    border: 1px solid #d3d3d3;
+    border-width: 0 1px;
+    //content列表
+    .home-content-left {
+      width: 729px;
+      padding: 20px 20px 40px;
+      border-right: 1px solid #d3d3d3;
+      //热门推荐
+      .home-popular-recommendation {
+        @include Flex($justify: start);
+        flex-wrap: wrap;
+        margin-top: 20px;
+        //热门推荐item
+        .popular-recommendation-item {
+          margin-right: 42px;
+
+          &:nth-of-type(4n) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  //榜单
+  .home-top {
+    width: 688px;
+    border: 1px solid #c2c2c2;
+    margin-top: 20px;
+    @include Flex($justify: start);
+
+    > li {
+      border-right: 1px solid #c2c2c2;
+      width: 228px;
+
+      &:nth-last-of-type(1) {
+        border: none;
+      }
+    }
+  }
+}
+
+//热门推荐分类
+.popular-categories {
+  @include Flex($justify: start);
+  margin: 0 auto 0 20px;
+
+  li {
+    &:nth-last-of-type(1) {
+      span {
+        display: none;
+      }
+    }
+
+    a {
+      color: #666666;
+      cursor: pointer;
+    }
+
+    span {
+      margin: 0 10px;
+      color: #cccccc;
+    }
+  }
+}

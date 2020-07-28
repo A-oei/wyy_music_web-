@@ -1,0 +1,27 @@
+@import "../../assets/style/mixin";
+
+.disc-item {
+  width: 118px;
+  height: 100px;
+  background-image: url("../../assets/images/cover-song.png");
+  @include BackgroundPosition(0 -570px);
+  position: relative;
+  img{
+    width: 100px;
+    height: 100px;
+    display: block;
+    background-color: red;
+  }
+  .disc-item-btn{
+    width: 22px;
+    height: 22px;
+    background-image:url("../../assets/images/icon-all.png");
+    @include BackgroundPosition(0 -85px);
+    position: absolute;
+    right: 25px;
+    bottom: 5px;
+    &:hover{
+      @include BackgroundPosition(0 -110px);
+    }
+  }
+}

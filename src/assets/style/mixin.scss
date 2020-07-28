@@ -1,0 +1,10 @@
+@mixin BackgroundPosition($position:0 0) {
+  background-repeat: no-repeat;
+  background-position: $position;
+}
+
+@mixin Flex($justify:space-between,$align:center){
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}

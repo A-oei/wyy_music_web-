@@ -1,0 +1,81 @@
+@import "../../assets/style/mixin";
+
+.banner-carousel {
+  width: 730px;
+  height: 284px;
+  position: relative;
+  background-color: greenyellow;
+  //按钮
+  div {
+    &[data-btn="carousel"] {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 37px;
+      height: 63px;
+      cursor: pointer;
+      z-index: 10;
+      background-image: url("../../assets/images/banner-carousel.png");
+      @include BackgroundPosition(0 -360px);
+
+      &:hover {
+        @include BackgroundPosition(0 -430px);
+      }
+    }
+
+    &.carousel-btn-left {
+      left: -68px;
+    }
+    &.carousel-btn-right {
+      right: -68px;
+      @include BackgroundPosition(0 -508px);
+      &:hover {
+        @include BackgroundPosition(0 -578px);
+      }
+    }
+  }
+
+  //轮播图
+  .banner-carousel-wrap {
+    width: 730px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    ul {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      transition: all 1s;
+
+      li {
+        height: 100%;
+        float: left;
+        background-color: skyblue;
+        text-align: center;
+        line-height: 284px;
+        color: #ffffff;
+        font-size: 56px;
+        font-weight: 700;
+      }
+    }
+    //轮播图下标
+    .carousel-subscript{
+      width: 100%;
+      position: absolute;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      li{
+        width: 20px;
+        height: 20px;
+        background-image: url("../../assets/images/banner-carousel.png");
+        @include BackgroundPosition(3px -343px);
+        &.active{
+          @include BackgroundPosition(-16px -343px);
+        }
+      }
+    }
+  }
+}
