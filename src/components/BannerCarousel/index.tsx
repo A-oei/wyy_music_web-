@@ -17,7 +17,6 @@ type StateType = {
 
 export default function BannerCarousel(props: { data: BannerCarouselType }) {
 
-    const [bannerLists, setBannerLists] = useState(["5", "1", "2", "3", "4", "5", "1"]);//轮播图片集合
     const [isAutomatic, setIsAutomatic] = useState<boolean>(true);//计时器是否运行
     const [isTransition, setIsTransition] = useState<boolean>(true); //是否保留transition状态
     const [carouselProps, setCarouselProps] = useState<BannerCarouselType>(props.data)
@@ -36,7 +35,7 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
         }
 
 
-        if (current >= 6) {
+        if (current >= props.data.bannerList.length) {
             setIsTransition(false);
             return {currentIndex: 0};
         } else {
@@ -46,7 +45,7 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
     }
 
     function isActive(index: number): boolean {
-        let current = state.currentIndex, max = bannerLists.length - 3;
+        let current = state.currentIndex, max = carouselProps.bannerList.length - 3;
         current > (max) && (current = 0);
 
         return current == index;
@@ -63,7 +62,18 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
     }, [])
 
     useEffect(() => {
-        setCarouselProps(props.data);//如果props发生变化重新赋值
+        console.log(props.data,'props.data')
+        setCarouselProps({
+            width:props.data.width,
+            bannerList:props.data.bannerList,
+            bannerNumber:props.data.bannerNumber
+        });//如果props发生变化重新赋值
+        // console.log(carouselProps,'carouselProps')
+        // setCarouselProps({
+        //     width:730,
+        //     bannerList:[1,2,3,4,5,6],
+        //     bannerNumber:5
+        // })
     }, [props.data])
 
     return (
@@ -73,23 +83,26 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
             {/*轮播主体*/}
             <div className="banner-carousel-wrap">
                 <ul style={{
-                    width: 100 * bannerLists.length + "%",
+                    width: 100 * carouselProps.bannerList.length + "%",
                     left: -(state.currentIndex * carouselProps.width) + 'px',
                     transition: isTransition ? "all 1s" : "none"
                 }}>
                     {
-                        bannerLists.map((item, index) =>
-                            <li key={index} style={{width: carouselProps.width + "px"}}>{item}</li>
+                        carouselProps.bannerList.map((item, index) =>
+                            <li key={index} style={{width: carouselProps.width + "px"}}>
+                                <img src={item.imageUrl}/>
+                            </li>
                         )
                     }
                 </ul>
                 {/*下标点*/}
                 <ol className="carousel-subscript">
                     {
-                        Array.from(Array(bannerLists.length - 2), (item, index) =>
+                        Array.from(Array(carouselProps.bannerNumber), (item, index) =>
                             <li className={isActive(index) ? "active" : ""}
                                 key={`carousel-subscript-${index}`}/>)
                     }
+
                 </ol>
             </div>
         </div>

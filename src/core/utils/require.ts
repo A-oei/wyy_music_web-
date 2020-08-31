@@ -6,7 +6,7 @@ import {Method,BaseConfig} from './type';
 import {httpCode} from "./enum";
 
 let baseConfig: BaseConfig = {
-    baseURL: '',
+    baseURL: 'http://localhost:3000',
     timeout: 30000,
     withCredentials: false,
     headers: {
@@ -27,6 +27,7 @@ const intercepotors = {
         return Promise.reject(error)
     },
     responseSuccess(response: any) {
+        console.log(response,'response')
         if (!response.data.code) {
             response.data.code = response.data.status || response.data.resultCode
         }
@@ -38,10 +39,9 @@ const intercepotors = {
 }
 
 function DataProviders(res: { [data: string]: any }) {
-    console.log(res,'res');
     let rdata = res.data;
     if (rdata.code == httpCode.success) {
-        return Promise.resolve(rdata.data);
+        return Promise.resolve(rdata);
     }
     if (rdata.code == httpCode.overtime) {
         window.localStorage.removeItem('token');

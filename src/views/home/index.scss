@@ -58,6 +58,7 @@
     margin: 0 auto;
     border: 1px solid #d3d3d3;
     border-width: 0 1px;
+    @include Flex($justify: flex-start, $align: flex-start);
     //content列表
     .home-content-left {
       width: 729px;
@@ -68,6 +69,7 @@
         @include Flex($justify: start);
         flex-wrap: wrap;
         margin-top: 20px;
+        margin-bottom: 35px;
         //热门推荐item
         .popular-recommendation-item {
           margin-right: 42px;
@@ -77,6 +79,92 @@
           }
         }
       }
+
+    }
+
+    .home-content-right {
+      width: 250px;
+    }
+  }
+
+  //热门推荐分类
+  .popular-categories {
+    @include Flex($justify: start);
+    margin: 0 auto 0 20px;
+
+    li {
+      &:nth-last-of-type(1) {
+        span {
+          display: none;
+        }
+      }
+
+      a {
+        color: #666666;
+        cursor: pointer;
+      }
+
+      span {
+        margin: 0 10px;
+        color: #cccccc;
+      }
+    }
+  }
+
+
+  //新碟上架
+  .home-new-shelf {
+    width: 100%;
+    height: 184px;
+    background-color: #f5f5f5;
+    border: 1px solid #ffffff;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 37px;
+
+    //滑动按钮
+    .new-shelf-left, .new-shelf-right {
+      width: 17px;
+      height: 17px;
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      transform: translateY(-50%);
+      background-image: url("../../assets/images/index-bg.png");
+    }
+
+    .new-shelf-right {
+      right: 0;
+      @include BackgroundPosition(-300px -75px);
+
+      &:hover {
+        @include BackgroundPosition(-320px -75px);
+
+      }
+    }
+
+    .new-shelf-left {
+      @include BackgroundPosition(-260px -75px);
+
+      &:hover {
+        @include BackgroundPosition(-280px -75px);
+      }
+    }
+
+    //轮播内容
+    .new-shelf-box {
+      width: 400%;
+      height: 100%;
+      @include Flex($justify: flex-start);
+      position: absolute;
+
+      > li {
+        width: 25%;
+        height: 100%;
+        padding: 0 16px;
+        @include Flex($justify: space-around);
+      }
+
     }
   }
 
@@ -96,28 +184,32 @@
       }
     }
   }
-}
 
-//热门推荐分类
-.popular-categories {
-  @include Flex($justify: start);
-  margin: 0 auto 0 20px;
+  //登录
+  .user-login {
+    width: 100%;
+    height: 126px;
+    background-image: url("../../assets/images/index-bg.png");
+    @include BackgroundPosition;
 
-  li {
-    &:nth-last-of-type(1) {
-      span {
-        display: none;
-      }
+    p {
+      width: 205px;
+      margin: 16px auto;
+      line-height: 22px;
     }
 
-    a {
-      color: #666666;
-      cursor: pointer;
-    }
-
-    span {
-      margin: 0 10px;
-      color: #cccccc;
+    div {
+      margin: 0 auto;
+      width: 100px;
+      height: 31px;
+      line-height: 31px;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0 1px 0 #8a060b;
+      background-image: url("../../assets/images/index-bg.png");
+      @include BackgroundPosition(0 -195px);
     }
   }
 }
+
+

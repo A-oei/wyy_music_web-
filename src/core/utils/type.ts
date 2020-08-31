@@ -15,19 +15,21 @@ export interface BaseConfig {
     timeout?: number,
     headers?: object,
     withCredentials?: boolean
-};
+}
 
 //广告轮播props数据
 export interface BannerCarouselType {
-    width: number
-};
+    width: number,
+    bannerList:any[],
+    bannerNumber:number
+}
 
 //歌单props数据
 export interface SongItemType {
     title: string,
     plays: string,
     imgUrl: string
-};
+}
 
 //title栏props数据
 export interface TitleColumnType {
