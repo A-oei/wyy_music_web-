@@ -5,18 +5,29 @@ import Topbar from "./components/Topbar/index";
 import * as serviceWorker from './serviceWorker';
 import Routers from "./core/utils/router";
 import PageFooter from "./components/PageFooter/index";
+import MusicPlayer from "./components/MusicPlayer/index";
+
 import {BrowserRouter as Router} from "react-router-dom";
 
+import {Provider} from "react-redux";
+import {store} from "./redux";
+
+import BottomPlayer from "./components/BottomPlayer";
+
 ReactDOM.render(
-    <div className="app">
-        <Router>
-            <Topbar/>
-            <div className="app-content">
-                {Routers()}
-            </div>
-            <PageFooter/>
-        </Router>
-    </div>,
+    <Provider store={store}>
+        <div className="app">
+            <Router>
+                <Topbar/>
+                <div className="app-content">
+                    {Routers()}
+                </div>
+                <PageFooter/>
+                <BottomPlayer/>
+                <MusicPlayer/>
+            </Router>
+        </div>
+    </Provider>,
     document.getElementById('root')
 );
 

@@ -3,9 +3,14 @@ import "./index.scss";
 
 import {HomeTopType} from "../../core/utils/type";
 
-export default function HomeTopLists(props: { data: HomeTopType }) {
+import {connect} from "react-redux";
+
+
+function HomeTopLists(props: { data: HomeTopType, showBottomPlayer: any }) {
 
     const {lists, headerTitle, headerImg} = props.data;
+
+    const {showBottomPlayer} = props;
 
     return (
         <div className="home-top-lists">
@@ -24,12 +29,12 @@ export default function HomeTopLists(props: { data: HomeTopType }) {
             </div>
             <ul className="top-lists">
                 {
-                    lists.map((item, index) =>
+                    lists && lists.map((item, index) =>
                         <li className="top-lists-item" key={`top_lists_item${index}`}>
                             <span>{index + 1}</span>
                             <p>{item.name}</p>
                             <div>
-                                <span/>
+                                <span onClick={() => showBottomPlayer(item)}/>
                                 <span/>
                                 <span/>
                             </div>
@@ -43,3 +48,12 @@ export default function HomeTopLists(props: { data: HomeTopType }) {
         </div>
     )
 }
+
+
+function MapDispatchToProps(dispatch: any) {
+    return {
+        showBottomPlayer: (item: any) => dispatch({type: 'SHOW_BOTTOM_PLAYER', visible: true, id: item.id})
+    }
+}
+
+export default connect(null, MapDispatchToProps)(HomeTopLists);

@@ -1,10 +1,11 @@
 /**
-    * @Author: Aoei
-    * @date: 7/21/20
-    * @Description: 广告轮播图插件
-*/
+ * @Author: Aoei
+ * @date: 7/21/20
+ * @Description: 广告轮播图插件
+ */
 
-import React, {useState, useEffect, useReducer, useContext} from "react";
+
+import React, {useState, useEffect, useReducer, memo,useLayoutEffect} from "react";
 //样式
 import "./index.scss";
 
@@ -15,31 +16,34 @@ type StateType = {
 }
 
 
-export default function BannerCarousel(props: { data: BannerCarouselType }) {
+export default memo(function BannerCarousel(props: { data: BannerCarouselType }) {
 
     const [isAutomatic, setIsAutomatic] = useState<boolean>(true);//计时器是否运行
     const [isTransition, setIsTransition] = useState<boolean>(true); //是否保留transition状态
     const [carouselProps, setCarouselProps] = useState<BannerCarouselType>(props.data)
 
-    function setCurrent(state: StateType, type: string) {
+    function setCurrent<T extends StateType>(state: T, type: string) {
         let current = state.currentIndex;
 
-        if (type == "prev") {
+        if (type === "prev") {
             current--;
             setIsAutomatic(false);
-        } else if (type == "next") {
+        } else if (type === "next") {
             current++;
             setIsAutomatic(false);
         } else {
             isAutomatic && current++;
         }
 
-
-        if (current >= props.data.bannerList.length) {
+        if (current >= props.data.bannerList.length - 1) {
             setIsTransition(false);
             return {currentIndex: 0};
+        } else if (current < 0) {
+            setIsTransition(false);
+            return {currentIndex: props.data.bannerList.length - 3};
         } else {
             setIsTransition(true);
+            props.data.setBannerBackgroundImg({url: props.data.bannerList[current]['imageUrl']})
             return {currentIndex: current};
         }
     }
@@ -51,29 +55,27 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
         return current == index;
     }
 
+    function viewBannerCarousel(item:{encodeId:number,targetType:number,targetId:number}) { //查看轮播图详情
+
+    }
+
+
     const [state, dispatch] = useReducer(setCurrent, {currentIndex: 0});
 
-    useEffect(() => {
+    useLayoutEffect (() => {
         let timer = setInterval(() => {
             dispatch("");
             setIsAutomatic(true);
-        }, 1500);
+        }, 3000);
         return () => clearInterval(timer);
     }, [])
 
     useEffect(() => {
-        console.log(props.data,'props.data')
         setCarouselProps({
-            width:props.data.width,
-            bannerList:props.data.bannerList,
-            bannerNumber:props.data.bannerNumber
+            width: props.data.width,
+            bannerList: props.data.bannerList,
+            bannerNumber: props.data.bannerNumber,
         });//如果props发生变化重新赋值
-        // console.log(carouselProps,'carouselProps')
-        // setCarouselProps({
-        //     width:730,
-        //     bannerList:[1,2,3,4,5,6],
-        //     bannerNumber:5
-        // })
     }, [props.data])
 
     return (
@@ -89,7 +91,8 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
                 }}>
                     {
                         carouselProps.bannerList.map((item, index) =>
-                            <li key={index} style={{width: carouselProps.width + "px"}}>
+                            <li key={index} style={{width: carouselProps.width + "px"}}
+                                onClick={() => viewBannerCarousel(item)}>
                                 <img src={item.imageUrl}/>
                             </li>
                         )
@@ -107,4 +110,4 @@ export default function BannerCarousel(props: { data: BannerCarouselType }) {
             </div>
         </div>
     )
-}
+})

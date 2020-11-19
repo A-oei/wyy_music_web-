@@ -5,7 +5,6 @@
   //头部信息
   .top-lists-header {
     padding: 20px 0 20px 20px;
-    height: 100px;
     @include Flex($justify: start, $align: start);
     background-color: #F4F4F4;
 

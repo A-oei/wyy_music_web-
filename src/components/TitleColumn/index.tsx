@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,memo} from 'react';
 import "./index.scss";
 import {TitleColumnType} from "../../core/utils/type";
 
-export default function TitleColumn(props: { props: TitleColumnType,children?:any }) {
+export default memo(function TitleColumn(props: { props: TitleColumnType,children?:any }) {
 
-    useEffect(() => {
-        console.log(props, 'TitleColumn-props')
-    })
+    console.log("titleColumn");
+
 
     const {slot, title, link} = props.props;
 
@@ -24,4 +23,4 @@ export default function TitleColumn(props: { props: TitleColumnType,children?:an
             </div>
         </div>
     )
-}
+})

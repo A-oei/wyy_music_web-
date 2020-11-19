@@ -20,15 +20,16 @@ export interface BaseConfig {
 //广告轮播props数据
 export interface BannerCarouselType {
     width: number,
-    bannerList:any[],
-    bannerNumber:number
+    bannerList: any[],
+    bannerNumber: number,
+    setBannerBackgroundImg?: any
 }
 
 //歌单props数据
 export interface SongItemType {
     title: string,
     plays: string,
-    imgUrl: string
+    imgUrl: string,
 }
 
 //title栏props数据
@@ -40,8 +41,16 @@ export interface TitleColumnType {
 
 //榜单props数据
 export interface HomeTopType {
-    headerImg: string,
-    headerTitle: string,
+    headerImg?: string,
+    headerTitle?: string,
     lists: { name: string }[]
+}
+
+//热门主播数据
+export interface PopularAnchors {
+    name: string,
+    picUrl: string,
+    rcmdtext: string,
+    other?: any
 }
 

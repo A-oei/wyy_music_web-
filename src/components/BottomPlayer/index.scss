@@ -1,0 +1,266 @@
+@import "../../assets/style/mixin";
+
+.bottom-player {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  margin-right: 67px;
+  height: 53px;
+  transition: all 1s;
+  background: url("../../assets/images/bottom-playbar.png") repeat-x 0 0;
+  //收起
+  &.pack-up {
+    bottom: -44px;
+  }
+
+  &:hover {
+    bottom: 0;
+  }
+
+  .bottom-player-wrap {
+    width: 980px;
+    height: 100%;
+    margin: 0 auto;
+    @include Flex($justify: flex-start);
+  }
+
+  //锁定按钮背景
+  .bottom-player-locking {
+    position: absolute;
+    right: 15px;
+    top: -14px;
+    width: 52px;
+    height: 23px;
+    background: url("../../assets/images/bottom-playbar.png") no-repeat 0 -380px;
+    // 锁定图标
+    .lock {
+      width: 18px;
+      height: 18px;
+      background: url("../../assets/images/bottom-playbar.png") no-repeat -100px -380px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &.lock-open {
+        background-position: -80px -380px;
+      }
+    }
+  }
+
+  //播放按钮
+  .bottom-player-broadcast {
+    height: 100%;
+    width: 137px;
+    padding-top: 6px;
+    @include Flex($justify: center, $align: center);
+    //上一曲、下一曲
+    .player-broadcast-prev, .player-broadcast-next {
+      width: 28px;
+      height: 28px;
+      background: url("../../assets/images/bottom-playbar.png") no-repeat 0 -130px;
+      margin-right: 8px;
+
+      &:hover {
+        background-position: -30px -130px;
+      }
+    }
+
+    .player-broadcast-next {
+      background-position: -80px -130px;
+      margin-right: 0;
+      margin-left: 8px;
+
+      &:hover {
+        background-position: -110px -130px;
+      }
+    }
+
+    //播放 | 暂停按钮
+    .player-broadcast-pause {
+      width: 36px;
+      height: 36px;
+      background: url("../../assets/images/bottom-playbar.png") no-repeat 0 -204px;
+
+      &:hover {
+        background-position: -40px -204px;
+      }
+    }
+  }
+
+  //歌曲信息 进度条
+  .bottom-player-info {
+    width: 550px;
+    height: 100%;
+    @include Flex($justify: flex-start);
+    //头像
+    .player-info-head {
+      width: 34px;
+      height: 34px;
+      margin-right: 15px;
+      cursor: pointer;
+      border-radius: 2px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        background-color: forestgreen;
+      }
+    }
+
+    //进度条
+    .player-info-content {
+      width: 100%;
+      @include Flex($justify: flex-start);
+      flex-wrap: wrap;
+
+      .player-info-title {
+        @include Flex($justify: flex-start);
+
+        h3 {
+          margin-right: 15px;
+          max-width: 300px;
+          color: #e8e8e8;
+          cursor: pointer;
+          text-shadow: 0 1px 0 #171717;
+          line-height: 28px;
+        }
+
+        span {
+          color: #9b9b9b;
+          cursor: pointer;
+          text-shadow: 0 1px 0 #171717;
+          line-height: 28px;
+        }
+
+        s {
+          width: 14px;
+          height: 15px;
+          cursor: pointer;
+          background: url("../../assets/images/bottom-playbar.png") no-repeat -110px -103px;
+          margin-left: 13px;
+        }
+      }
+
+      //进度条
+      .player-info-schedule {
+        width: 493px;
+        height: 9px;
+        position: relative;
+
+        > span {
+          width: 22px;
+          height: 24px;
+          position: absolute;
+          top: -7px;
+          left: 200px;
+          background: url("../../assets/images/icon-all.png") no-repeat 0 -250px;
+          z-index: 3;
+        }
+
+        .info-schedule-background {
+          width: 100%;
+          height: 100%;
+          background: url("../../assets/images/player-info-schedule.png") right 0;
+        }
+
+        .info-schedule-mark {
+          width: 44%;
+          height: 100%;
+          background: url("../../assets/images/player-info-schedule.png") left -66px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          //border-radius: 3px;
+        }
+
+        //记时
+        .info-schedule-timekeeping {
+          position: absolute;
+          top: -3px;
+          right: -84px;
+          color: #797979;
+          text-shadow: 0 1px 0 #121212;
+
+          span {
+            color: #a1a1a1;
+          }
+        }
+      }
+    }
+  }
+
+  //功能栏
+  .bottom-player-function {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 11px;
+    margin-left: auto;
+
+    span {
+      height: 25px;
+      width: 10px;
+      background: url("../../assets/images/bottom-playbar.png") no-repeat -147px -247px;
+      margin: 0 5px;
+    }
+
+    div[class^="player-function-"] {
+      background-image: url("../../assets/images/bottom-playbar.png");
+      width: 25px;
+      height: 25px;
+      margin-right: 2px;
+    }
+
+    .player-function-collect {
+      background-position: -88px -163px;
+
+      &:hover {
+        background-position: -88px -189px;
+      }
+    }
+
+    .player-function-share {
+      background-position: -114px -163px;
+
+      &:hover {
+        background-position: -114px -189px;
+      }
+    }
+
+    .player-function-volume {
+      background-position: -2px -248px;
+
+      &:hover {
+        background-position: -31px -248px;
+      }
+    }
+
+    .player-function-mode {
+      background-position: -3px -344px;
+
+      &:hover {
+        background-position: -33px -344px;
+      }
+    }
+
+    .player-function-history {
+      width: 38px !important;
+      padding-left: 21px;
+      background-position: -42px -68px;
+      box-sizing: content-box;
+      border-radius: 0 60% 60% 0;
+      text-align: center;
+      line-height: 25px;
+      text-shadow: 0 1px 0 #080707;
+      color: #666;
+
+      &:hover {
+        background-position: -42px -98px;
+      }
+    }
+  }
+}

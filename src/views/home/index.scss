@@ -6,6 +6,16 @@
   .home-banner {
     width: 100%;
     background-color: #cccccc;
+    position: relative;
+    //轮播盒子背景毛玻璃图片
+    .home-banner-bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
     //轮播图盒子
     .home-banner-wrap {
       width: 982px;
@@ -92,7 +102,7 @@
     @include Flex($justify: start);
     margin: 0 auto 0 20px;
 
-    li {
+    > a {
       &:nth-last-of-type(1) {
         span {
           display: none;
@@ -208,6 +218,54 @@
       text-shadow: 0 1px 0 #8a060b;
       background-image: url("../../assets/images/index-bg.png");
       @include BackgroundPosition(0 -195px);
+    }
+  }
+
+  //热门主播
+  .popular-anchors {
+    margin-top: 30px;
+
+    h3 {
+      margin: 0 20px;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+      color: #333333;
+    }
+
+    ul {
+      margin: 20px 5px 0 20px;
+
+      li {
+        width: 100%;
+        cursor: pointer;
+        @include Flex($justify:flex-start);
+        margin-bottom: 10px;
+        img {
+          width: 40px;
+          height: 40px;
+          box-shadow: 0 0 1px #333333 inset;
+          margin-right: 10px;
+        }
+
+        div {
+          width: calc(100% - 50px);
+
+          p {
+            width: 100%;
+            font-size: 12px;
+            line-height: 21px;
+            color: #333333;
+            font-weight: 600;
+
+            &:nth-of-type(2) {
+              color: #666666;
+              font-weight: 400;
+            }
+          }
+        }
+      }
     }
   }
 }

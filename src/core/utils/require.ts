@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 import {TypeJudgment} from "./public";
-import {Method,BaseConfig} from './type';
+import {Method, BaseConfig} from './type';
 import {httpCode} from "./enum";
 
 let baseConfig: BaseConfig = {
@@ -27,7 +27,6 @@ const intercepotors = {
         return Promise.reject(error)
     },
     responseSuccess(response: any) {
-        console.log(response,'response')
         if (!response.data.code) {
             response.data.code = response.data.status || response.data.resultCode
         }
@@ -91,8 +90,7 @@ let http = (ajax: any, url: string, method: Method, params: Params, isFormData: 
         Object.keys(data).map(item => {
             if (params[item] && TypeJudgment(data) == 'string') params[item] = params[item].trim();
         })
-    }
-    catch (e) {
+    } catch (e) {
         data = {...params}
     }
 

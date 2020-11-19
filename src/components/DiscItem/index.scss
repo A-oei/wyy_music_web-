@@ -24,4 +24,12 @@
       @include BackgroundPosition(0 -110px);
     }
   }
+
+  .disc-info{
+    width: 100%;
+    .disc-info-title{
+      cursor: pointer;
+      line-height: 18px;
+    }
+  }
 }

@@ -1,42 +1,26 @@
-import React, { useState, useReducer } from 'react'
+import React, {useState, useCallback, useMemo, useEffect} from 'react'
+import Child from "./child";
+
+export default function Test() {
+    useEffect(() => {
+        alert(1)
+    }, [])
 
 
+    const [num, setNumber] = useState(0);
+    const [name, setName] = useState({name: "parent"})
 
-type StateType = {
-    count: number
-}
-
-type ActionType = {
-    type: 'reset' | 'decrement' | 'increment'
-}
-
-const initialState = { count: 0 }
-
-function reducer(state: StateType, action: ActionType) {
-    switch (action.type) {
-        case 'reset':
-            return initialState
-        case 'increment':
-            return { count: state.count + 1 }
-        case 'decrement':
-            return { count: state.count - 1 }
-        default:
-            return state
-    }
-}
-
-function Test({ initialCount = 0}) {
-    const [state, dispatch] = useReducer(reducer, { count: initialCount })
+    const change = useCallback(function (name: string) {
+        setName({name: "1122"});
+    }, [])
+    // const info=useMemo(()=>({gender:"1",age:"16"}),['gender','age']);
+    const info = {gender: "1", age: "16"};
 
     return (
         <div>
-            Count: {state.count}
-            <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+            <p onClick={() => info.age = "2222"}>Test {num}</p>
+            <Child name={name} click={change} info={info}/>
         </div>
     )
 }
-
-export default Test
 
