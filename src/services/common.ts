@@ -15,5 +15,12 @@ export default {
      */
     getSongUrl(params: { id: string }) {
         return http.get('/song/url', params, null)
+    },
+    /**
+     *@desc 函数说明 获取歌词
+     *@params 参数说明 id: 音乐 id
+     */
+    getLyric(params: { id: string | number }) {
+        return http.get('/lyric', params, null)
     }
 }

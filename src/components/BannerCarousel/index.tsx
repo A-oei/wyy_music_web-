@@ -5,7 +5,7 @@
  */
 
 
-import React, {useState, useEffect, useReducer, memo,useLayoutEffect} from "react";
+import React, {useState, useEffect, useReducer, memo, useLayoutEffect} from "react";
 //样式
 import "./index.scss";
 
@@ -15,12 +15,16 @@ type StateType = {
     currentIndex: number
 }
 
-
 export default memo(function BannerCarousel(props: { data: BannerCarouselType }) {
 
     const [isAutomatic, setIsAutomatic] = useState<boolean>(true);//计时器是否运行
     const [isTransition, setIsTransition] = useState<boolean>(true); //是否保留transition状态
     const [carouselProps, setCarouselProps] = useState<BannerCarouselType>(props.data)
+
+
+    const bannerLength = props.data.bannerList.length,
+        bannerList=props.data.bannerList,
+        setBannerBackground = (params:{url:string}) => props.data.setBannerBackgroundImg(params);
 
     function setCurrent<T extends StateType>(state: T, type: string) {
         let current = state.currentIndex;
@@ -35,15 +39,15 @@ export default memo(function BannerCarousel(props: { data: BannerCarouselType })
             isAutomatic && current++;
         }
 
-        if (current >= props.data.bannerList.length - 1) {
+        if (current >= bannerLength - 1) {
             setIsTransition(false);
             return {currentIndex: 0};
         } else if (current < 0) {
             setIsTransition(false);
-            return {currentIndex: props.data.bannerList.length - 3};
+            return {currentIndex: bannerLength - 3};
         } else {
             setIsTransition(true);
-            props.data.setBannerBackgroundImg({url: props.data.bannerList[current]['imageUrl']})
+            setBannerBackground({url: bannerList[current]['imageUrl']});
             return {currentIndex: current};
         }
     }
@@ -55,14 +59,14 @@ export default memo(function BannerCarousel(props: { data: BannerCarouselType })
         return current == index;
     }
 
-    function viewBannerCarousel(item:{encodeId:number,targetType:number,targetId:number}) { //查看轮播图详情
+    function viewBannerCarousel(item: { encodeId: number, targetType: number, targetId: number }) { //查看轮播图详情
 
     }
 
 
     const [state, dispatch] = useReducer(setCurrent, {currentIndex: 0});
 
-    useLayoutEffect (() => {
+    useLayoutEffect(() => {
         let timer = setInterval(() => {
             dispatch("");
             setIsAutomatic(true);
@@ -91,7 +95,7 @@ export default memo(function BannerCarousel(props: { data: BannerCarouselType })
                 }}>
                     {
                         carouselProps.bannerList.map((item, index) =>
-                            <li key={index} style={{width: carouselProps.width + "px"}}
+                            <li key={`banner_carousel_${index}`} style={{width: carouselProps.width + "px"}}
                                 onClick={() => viewBannerCarousel(item)}>
                                 <img src={item.imageUrl}/>
                             </li>

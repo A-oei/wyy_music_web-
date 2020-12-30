@@ -83,11 +83,13 @@
       position: relative;
       overflow: hidden;
       background-color: #E8E8E8;
-      &:nth-of-type(2n){
+
+      &:nth-of-type(2n) {
         background-color: #F4F4F4;
       }
-      &:nth-child(-n+3){
-        span{
+
+      &:nth-child(-n+3) {
+        span {
           color: #c10d0c;
         }
       }
@@ -95,6 +97,10 @@
       &:hover {
         & > div {
           top: 50%;
+        }
+
+        & > p {
+          width: 100px;
         }
       }
 
@@ -109,8 +115,10 @@
 
       p {
         color: #000;
+        width: 300px;
       }
 
+      // 播放、收藏按钮
       div {
         @include Flex($justify: start);
         margin-left: auto;
@@ -118,6 +126,7 @@
         right: 10px;
         top: -300px;
         transform: translateY(-50%);
+        z-index: 10;
 
         span {
           width: 17px;
@@ -132,7 +141,7 @@
 
           &:nth-of-type(2) {
             background-image: url("../../assets/images/icon-all2.png");
-            @include BackgroundPosition(0 -700px);
+            @include BackgroundPosition(0 -698px);
 
             &:hover {
               @include BackgroundPosition(-22px -698px);

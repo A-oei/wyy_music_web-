@@ -54,3 +54,23 @@ export interface PopularAnchors {
     other?: any
 }
 
+//当前播放歌曲信息
+export interface SongInfo {
+    name: string,//歌曲名称
+    singer: string,//歌手
+    cover: string,//封面
+    duration: number,//歌曲时长
+}
+
+//历史记录歌曲信息
+export interface HistoryItem {
+    name: string,//歌曲名称
+    singer: string,//歌手
+    duration: number,//时长
+    lyric?: string,//歌词
+}
+//历史记录
+export interface HistoryType {
+    ids: string[],//历史记录id集合
+    list: HistoryItem[]//历史记录信息集合
+}

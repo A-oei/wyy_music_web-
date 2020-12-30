@@ -2,7 +2,6 @@ import React, {useState, useEffect, useMemo, useCallback,useLayoutEffect} from "
 import {useHistory, Link} from "react-router-dom";
 
 import "./index.scss";
-
 import BannerCarousel from "../../components/BannerCarousel/index";
 import TitleColumn from "../../components/TitleColumn";
 import SongItem from "../../components/SongItem/index";
@@ -28,7 +27,8 @@ function Home(prop: any) {
                         // <li key={`popular-categories_${index}`} onClick={()=>PopularCategoriesChange(item.path)}>
                         <Link key={`popular-categories_${index}`}
                               to={{pathname: `/popularRecommendation`, state: {assort: item.value}}}>
-                            <a href={item.path}>{item.value}</a>
+                            {/*<a href={item.path}>{item.value}</a>*/}
+                            <i>{item.value}</i>
                             <span>|</span>
                         </Link>
                     )
@@ -155,8 +155,8 @@ function Home(prop: any) {
     useEffect(() => {
         getBannerList(0);
         getPopularRecommendation();
-        getNewShelves();
         getTopList();
+        getNewShelves();
         getPopularAnchors();
     }, [])
 
@@ -187,9 +187,7 @@ function Home(prop: any) {
                             popularRecommendation.map((item, index) =>
                                 <li className="popular-recommendation-item" key={`recommendation-item_${index}`}>
                                     {
-                                        // songLists.map((item: SongItemType, index) =>
                                         <SongItem data={item} key={`songItem_${index}`}/>
-                                        // )
                                     }
                                 </li>)
                         }
@@ -251,8 +249,8 @@ function Home(prop: any) {
                         <h3>热门主播</h3>
                         <ul>
                             {
-                                anchorsList.map(item =>
-                                    <li>
+                                anchorsList.map((item,index) =>
+                                    <li key={`popular_anchors_${index}`}>
                                         <img src={item.picUrl}/>
                                         <div>
                                             <p className="line-omit">{item.name}</p>

@@ -33,7 +33,7 @@ export default function PageFooter() {
                     <div className="content-copyright-terms">
                         {
                             termsLists.map((item, index) =>
-                                <p>
+                                <p key={`copyright_terms_p_${index}`}>
                                     <a href={item.href} key={index}>{item.title}</a>
                                     <span>|</span>
                                 </p>

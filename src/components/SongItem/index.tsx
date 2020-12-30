@@ -5,8 +5,8 @@ import {SongItemType} from "../../core/utils/type";
 
 import {connect} from "react-redux";
 
-function SongItem(props: { data: SongItemType, playSingle: any }) {
-    const {playSingle} = props;
+function SongItem(props: { data: SongItemType }) {
+    // const {playSingle} = props;
     return (
         <div className="song-item">
             {/*歌单封面*/}
@@ -15,7 +15,7 @@ function SongItem(props: { data: SongItemType, playSingle: any }) {
                 <div className="play-column">
                     <span className="play-column-icon"/>
                     <span className="play-volume">{props.data.plays}</span>
-                    <div className="play-btn" onClick={() => playSingle()}/>
+                    <div className="play-btn"/>
                 </div>
             </div>
             {/*歌单标题*/}
@@ -29,7 +29,7 @@ function SongItem(props: { data: SongItemType, playSingle: any }) {
 
 function MapDispatchToProps(dispatch: any) {
     return {
-        playSingle: () => dispatch({type: "SHOW_BOTTOM_PLAYER", visible: true, id: ""})
+        // playSingle: () => dispatch({type: "SHOW_BOTTOM_PLAYER", visible: true, id: ""})
     }
 }
 

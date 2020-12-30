@@ -4,7 +4,6 @@
   width: 730px;
   height: 284px;
   position: relative;
-  background-color: greenyellow;
   //按钮
   div {
     &[data-btn="carousel"] {
@@ -51,7 +50,6 @@
       li {
         height: 100%;
         float: left;
-        background-color: skyblue;
         text-align: center;
         line-height: 284px;
         color: #ffffff;

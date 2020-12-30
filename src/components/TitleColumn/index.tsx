@@ -4,9 +4,6 @@ import {TitleColumnType} from "../../core/utils/type";
 
 export default memo(function TitleColumn(props: { props: TitleColumnType,children?:any }) {
 
-    console.log("titleColumn");
-
-
     const {slot, title, link} = props.props;
 
     return (
